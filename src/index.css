@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+
+@theme {
+  
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #000000;
+}
+
+.main-body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #4444ac;
+  border-radius: 30px;
+  display: flex;
+}
+
+.queue-container {
+  width: 100%;
+  height: 35%;
+  border-radius: 30px;
+  border-top-right-radius: 0px;
+  background-color: #3e61d2;
+  opacity: 1;
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #3e61d2 40px
+    ),
+    repeating-linear-gradient(#4767d055, #3b59bf);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden
+
+}
+
+
+@layer components {
+  .screen-container {
+    @apply w-[calc(100%-100px)] h-full rounded-3xl bg-[url('./background.png')] bg-center bg-cover;
+  }
+
+  .login-page {
+    @apply bg-[#1f1f1f] h-screen w-screen flex justify-center items-center overflow-hidden flex-col;
+  }
+
+  .login-btn {
+    @apply w-[200px] py-[15px] text-center bg-[#fefefe] rounded-[50px] text-[#1f1f1f] font-semibold mt-[20%];
+  }
+
+  .playlist-card {
+    @apply w-[15%] h-auto border-[1px] border-[#364562] rounded-3xl bg-[rgb(30,42,62)] p-2 mb-[2%] bg-linear-75 from-sky-900 to-indigo-950 sm:w-50;
+  }
+
+  .playlist-image {
+    @apply w-full rounded-3xl;
+  }
+
+  .leftPlay-body{
+    @apply w-[73%] h-full mr-[2%]
+  }
+
+  .rightPlay-body{
+    @apply w-[25%] h-full flex flex-col justify-between 
+  }
+}
+
+@utility grid-cols-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, fr))
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
