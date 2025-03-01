@@ -15,9 +15,9 @@ const home = () => {
 
   useEffect(()=>{
     const token = window.localStorage.getItem("token");
-    const hash = new URLSearchParams(window.location.hash.substring(1));
+    const hash = new URLSearchParams(window.location.hash.slice(1));
     console.log(token);
-    console.log(hash)
+    console.log("Access Token:", hash.get("access_token"));
       // clear hash
 
     if (!token && hash.get("access_token")) {   // ถ้าไม่มี token & มีhash 
