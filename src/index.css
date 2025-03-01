@@ -5,6 +5,13 @@
   
 }
 
+@layer base {
+  :root {
+    --boxSize: 8px;
+    --gutter: 4px;
+  }
+}
+
 body {
   margin: 0;
   box-sizing: border-box;
@@ -39,6 +46,19 @@ body {
 
 }
 
+image.active {
+  animation: rotation 30s infinite linear;
+  transform-origin: 50% 50%   /*tailwind คือ origin-center : จุดหมุนคือตรงกลาง*/
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0)
+  }
+  to {
+    transform: rotate(359deg)
+  }
+}
 
 @layer components {
   .screen-container {
@@ -67,6 +87,81 @@ body {
 
   .rightPlay-body{
     @apply w-[25%] h-full flex flex-col justify-between 
+  }
+
+  .duration {
+    @apply font-bold text-[16px] lg:text-[20px] text-[#c4d0e3]
+  }
+
+  .box-container {
+    @apply flex justify-between h-[60px] w-[calc((var(--boxSize)+var(--gutter))*13)] 
+  }
+  .box {
+    @apply scale-[0.4] h-full w-[var(--boxSize)] bg-linear-to-t from-purple-500 to-blue-800 rounded-2xl
+  }
+}
+
+.box.active {
+  animation-duration: 1.2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.box1 {
+  animation-name: quite;
+}
+.box2 {
+  animation-name: normal;
+}
+.box3 {
+  animation-name: quite;
+}
+.box4 {
+  animation-name: loud;
+}
+.box5 {
+  animation-name: quite;
+}
+.box6 {
+  animation-name: normal;
+}
+.box7 {
+  animation-name: quite;
+}
+
+@keyframes quite {
+  25% {
+    transform: scale(0.6);
+  }
+  50% {
+    transform: scale(0.4);
+  }
+  75% {
+    transform: scale(0.8);
+  }
+}
+
+@keyframes normal {
+  25% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.4);
+  }
+  75% {
+    transform: scale(0.6);
+  }
+}
+
+@keyframes loud {
+  25% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.4);
+  }
+  75% {
+    transform: scale(1.2);
   }
 }
 

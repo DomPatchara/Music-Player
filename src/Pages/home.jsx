@@ -8,28 +8,26 @@ import Favorite from './favorite'
 import Sidebar from '../Components/Sidebar'
 import Login from './login'
 import { setClientToken } from '../spotify'
-import { getStoredToken, storeTokens } from '../auth'
 
 const home = () => {
 
   const [token, setToken] = useState("")
 
   useEffect(()=>{
-    const storedToken = getStoredToken();
+    const token = window.localStorage.getItem("token");
     const hash = new URLSearchParams(window.location.hash.substring(1));
-    console.log(storedToken);
+    console.log(token);
+    console.log(hash)
       // clear hash
 
-    if (!storedToken && hash.get("access_token")) {   // ถ้าไม่มี token & มีhash 
+    if (!token && hash.get("access_token")) {   // ถ้าไม่มี token & มีhash 
       const _token = hash.get("access_token"); // เลือกเฉพาะ access_token
-      const _refreshToken = hash.get("refresh_token");
-
-      storeTokens(_token, _refreshToken);
+      window.localStorage.setItem("token", _token);
       setToken(_token);
       setClientToken(_token);
     } else {
-      setToken(storedToken);
-      setClientToken(storedToken);
+      setToken(token);
+      setClientToken(token);
     }
 
     window.location.hash = ""  // clear URL hash

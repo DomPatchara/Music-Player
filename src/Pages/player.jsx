@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import apiClient from '../spotify';
 import SongCard from '../Components/SongCard/SongCard';
 import Queue from '../Components/Queue';
-import AudioPlayer from '../Components/AudioPlayer';
+import AudioPlayer from '../Components/AudioPlay/AudioPlayer';
 
 const player = () => {
   const location = useLocation();
@@ -31,7 +31,11 @@ const player = () => {
   return (
     <div className='screen-container flex'>
       <div className='leftPlay-body'>
-        <AudioPlayer currentTrack={currentTrack}/>
+        <AudioPlayer 
+          currentTrack={currentTrack} 
+          total={tracks} 
+          currentIndex={currentIndex} 
+          setCurrentIndex={setCurrentIndex}/>
       </div>
       <div className='rightPlay-body'>
         <SongCard album={currentTrack?.album}/>
