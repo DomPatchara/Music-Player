@@ -1,7 +1,7 @@
 import React from 'react'
 import WidgetEntry from './WidgetEntry';
 
-const widgetCard = ({title, similar, featured, newRelease}) => {
+const WidgetCard = ({title, similar, featured, newRelease}) => {
     console.log(
         "similar",
         similar,
@@ -45,4 +45,4 @@ const widgetCard = ({title, similar, featured, newRelease}) => {
   )
 }
 
-export default widgetCard
+export default WidgetCard
