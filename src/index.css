@@ -7,8 +7,8 @@
 
 @layer base {
   :root {
-    --boxSize: 8px;
-    --gutter: 4px;
+    --boxSize: 9px;
+    --gutter: 6px;
   }
 }
 
@@ -97,7 +97,7 @@ image.active {
     @apply flex justify-between h-[60px] w-[calc((var(--boxSize)+var(--gutter))*13)] 
   }
   .box {
-    @apply scale-[0.4] h-full w-[var(--boxSize)] bg-linear-to-t from-purple-500 to-blue-800 rounded-2xl
+    @apply scale-[0.6] h-full w-[var(--boxSize)] bg-linear-to-t from-purple-500 to-blue-800 rounded-2xl
   }
 
   .controls-wrapper {

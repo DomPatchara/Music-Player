@@ -96,25 +96,25 @@ const AudioPlayer = ({currentTrack, currentIndex, setCurrentIndex, total}) => {
 
   return (
     <div className='w-full h-[44%] my-[3%] flex flex-col lg:flex-row'>
-        <div className='md:w-[37%]'>
+        <div className='md:w-[45%]  flex justify-end'>
             <ProgressCircle
                 percentage={currentPercentage}
                 isPlaying={isPlaying}
                 image={currentTrack?.album?.images[0].url}
-                size={300}
+                size={350}
                 color="#c96850"
             />
         </div>
-        <div className='md:w-[67%] mt-2 md:mt-0 flex flex-col justify-evenly items-center'>
+        <div className='md:w-[55%] mt-2 md:mt-0 flex flex-col justify-evenly items-center'>
             <p className='text-center text-[#c4d0e3] font-bold text-3xl md:text-5xl line-clamp-2 p-2'>
               {currentTrack?.name}
             </p>
-            <p className='text-[#9aa9c2] font-medium text-[14px]'>
+            <p className='text-[#9aa9c2] font-medium text-[18px]'>
               {artists}
             </p>
 
             <div className='w-full flex flex-col items-center'>
-              <div className='flex w-[50%] justify-between items-center mb-[20px]'>
+              <div className='flex w-[65%] justify-between items-center mb-[20px]'>
                 <p className='duration'>0:{Math.round(trackProgress)}</p>
                 <WaveAnimation isPlaying={isPlaying}/>
                 <p className='duration'>{duration_m}</p>
