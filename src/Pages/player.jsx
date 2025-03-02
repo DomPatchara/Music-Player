@@ -38,7 +38,7 @@ const player = () => {
           currentIndex={currentIndex} 
           setCurrentIndex={setCurrentIndex}
         />
-        <Widgets artistID={currentTrack?.album?.artists[0]?.id}/>
+        <Widgets artistID={currentTrack?.album?.artists[0]?.id} setCurrentIndex={setCurrentIndex}/>
       </div>
       <div className='rightPlay-body'>
         <SongCard album={currentTrack?.album}/>

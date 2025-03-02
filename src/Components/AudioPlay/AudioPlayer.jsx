@@ -15,13 +15,13 @@ const AudioPlayer = ({currentTrack, currentIndex, setCurrentIndex, total}) => {
   const duration_ms = currentTrack?.duration_ms;
   const duration_m = Math.floor(duration_ms / 60000) + ':' + Math.floor((duration_ms % 60000)/1000).toString().padStart(2, "0")
 
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [trackProgress, setTrackProgress] = useState(0);
   const audioSrc = total[currentIndex]?.track.preview_url;
 
   console.log(audioSrc) // chechk audiofile
 
-  const audioRef = useRef(new Audio(total[0]?.track?.preview_url));
+  const audioRef = useRef(new Audio(total[0]?.track?.preview_url)); // ไม่มี preview_url = null 
   
   const intervalRef = useRef();
 
@@ -75,6 +75,8 @@ const AudioPlayer = ({currentTrack, currentIndex, setCurrentIndex, total}) => {
     audioRef.current = new Audio(audioSrc)
   },[])
 
+
+  // เลือกเพลงถัดไป
   const handleNext = () => {
     if(currentIndex < total.length - 1){
       setCurrentIndex(currentIndex + 1)
@@ -83,6 +85,7 @@ const AudioPlayer = ({currentTrack, currentIndex, setCurrentIndex, total}) => {
     }
   }
 
+  // ย้อนกลับเพลงที่แล้ว
   const handlePrev = () => {
     if(currentIndex - 1 < 0) {
       setCurrentIndex(currentIndex - 1)
@@ -96,7 +99,7 @@ const AudioPlayer = ({currentTrack, currentIndex, setCurrentIndex, total}) => {
         <div className='md:w-[37%]'>
             <ProgressCircle
                 percentage={currentPercentage}
-                isPlaying={true}
+                isPlaying={isPlaying}
                 image={currentTrack?.album?.images[0].url}
                 size={300}
                 color="#c96850"

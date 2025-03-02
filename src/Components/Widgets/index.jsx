@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 const Widgets = ({artistID}) => {
   const [similar, setSimilar] = useState([]);
-  const [featured, setFeatured] = useState([]);
+  const [albums, setAlbums] = useState([]);
   const [newRelease, setNewRelease] = useState([]);
 
   console.log("for", artistID)
@@ -15,17 +15,17 @@ const Widgets = ({artistID}) => {
         apiClient
             .get(`/artists/${artistID}/top-tracks`)
             .then((res)=>{
-                console.log("API Respone:", res.data);
                 const a = res.data?.tracks.slice(0, 3) // ดึงมาแค่ 3 array
                 setSimilar(a);
             })
             .catch((err) => console.error(err));
 
         apiClient
-            .get(`/browse/featured-playlists`) // ดึงยังไม่ได้ ไม่ได้สิทธิดึงอันนี้
+            .get(`/artists/${artistID}/albums`) // 
             .then((res) => {
-                const a = res.data?.playlists.items.slice(0, 3);  // ดึงมาแค่ 3 array
-                setFeatured(a);
+                const a = res.data?.items.slice(1, 4);  // ดึงมาแค่ 3 array
+                console.log("API Respone:", a);
+                setAlbums(a);
             })
             .catch((err) => console.error(err));
     
@@ -41,9 +41,9 @@ const Widgets = ({artistID}) => {
 
   return (
     <div className='widgets-body'>
-        <WidgetCard title="Top Tracks" similar={similar} />
-        <WidgetCard title="Made For You" featured={featured} />
-        <WidgetCard title="New Releases" newRelease={newRelease} />
+        <WidgetCard title="Top Tracks" similar={similar}/>
+        <WidgetCard title="Albums For You" albums={albums}/>
+        <WidgetCard title="New Releases" newRelease={newRelease}/>
     </div>
   )
 }

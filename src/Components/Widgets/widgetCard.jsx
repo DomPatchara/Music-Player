@@ -1,18 +1,18 @@
 import React from 'react'
 import WidgetEntry from './WidgetEntry';
 
-const WidgetCard = ({title, similar, featured, newRelease}) => {
+const WidgetCard = ({title, similar, albums, newRelease}) => {
     console.log(
         "similar",
         similar,
-        "featured",
-        featured,
+        "albums",
+        albums,
         "newRelease",
         newRelease
       );
   return (
     <div className='widgetcard-body'>
-        <p className="text-[#c4d0e3] font-extrabold text-[18px]">{title}</p>
+        <p className="text-[#c4d0e3] font-bold text-[19px]">{title}</p>
         {similar
             ? similar.map((artist, i) => (
                 <WidgetEntry
@@ -22,13 +22,13 @@ const WidgetCard = ({title, similar, featured, newRelease}) => {
                 image={artist?.album?.images[0].url}
                 />
             ))
-            : featured
-            ? featured.map((playlist, i) => (
+            : albums
+            ? albums.map((album, i) => (
                 <WidgetEntry
                 key={i}
-                title={playlist?.name}
-                subtitle={playlist?.tracks?.total + " Songs"}
-                image={playlist?.images[0]?.url}
+                title={album?.name}
+                subtitle={album?.total_tracks + " Songs"}
+                image={album?.images[0]?.url}
                 />
             ))
             : newRelease
